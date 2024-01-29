@@ -12,7 +12,7 @@ namespace Interfaces
     {
         Task<PagedList<Test>> GetAllTestsAsync(TestParameters testParameters, bool trackChanges);
         Task<Test> GetTestAsync(Guid testId, bool trackChanges);
-        void CreateTest(Guid testId, Test test);
+        void CreateTest(Test test);
         void DeleteTest(Test test);
     }
 }
