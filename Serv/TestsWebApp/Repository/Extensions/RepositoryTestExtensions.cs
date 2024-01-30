@@ -1,10 +1,6 @@
 ﻿using Entities.Models;
 using Repository.Extensions.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Dynamic.Core;
 
 namespace Repository.Extensions
 {
@@ -30,7 +26,7 @@ namespace Repository.Extensions
             if (string.IsNullOrWhiteSpace(orderQuery))
                 return tests.OrderBy(x => x.CreateTime);
 
-            return tests.OrderBy(orderQuery);
+            return tests.OrderBy(orderByQueryString);
         }
     }
 }

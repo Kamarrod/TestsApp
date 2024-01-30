@@ -13,11 +13,11 @@ namespace Repository
         private readonly Lazy<ITestRepository> _testRepository;
         private readonly Lazy<IQuestionRepository> _questionRepository;
     
-        public RepositoryManager(RepositoryContext repositoryContext, Lazy<ITestRepository> testRepository, Lazy<IQuestionRepository> questionRepository)
+        public RepositoryManager(RepositoryContext repositoryContext)
         {
             _repositoryContext = repositoryContext;
-            _testRepository = testRepository;
-            _questionRepository = questionRepository;
+            _testRepository = new Lazy<ITestRepository>(() => new TestRepository(repositoryContext));
+           // _questionRepository = new Lazy<IQuestionRepository>(() => new QuestionRepository(repositoryContext));
         }
 
         public ITestRepository Test => _testRepository.Value;

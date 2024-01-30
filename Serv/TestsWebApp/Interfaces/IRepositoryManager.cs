@@ -10,7 +10,6 @@ namespace Interfaces
     {
         ITestRepository Test { get; }
         IQuestionRepository Question { get; }
-
         Task SaveAsync();
     }
 }

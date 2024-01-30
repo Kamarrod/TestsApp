@@ -1,6 +1,7 @@
 ﻿using Entities.Models;
 using Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Repository.Extensions;
 using Shared.RequestFeatures;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,11 @@ namespace Repository
         {
             var tests = await
                 FindAll(trackChanges)
-                .Search()
+                .Search(testParameters.SearchTerm)
+                .Sort(testParameters.OrderBy)
+                .ToListAsync();
+
+            return PagedList<Test>.ToPagedList(tests, testParameters.PageNumber, testParameters.PageNumber);
         }
 
         public async Task<Test> GetTestAsync(Guid testId, bool trackChanges) => await
