@@ -12,6 +12,10 @@ namespace TestsWebApp
             CreateMap<TestForCreationDTO, Test>();
             CreateMap<TestForUpdateDTO, Test>();
             CreateMap<TestForUpdateDTO, Test>().ReverseMap();
+            CreateMap<Question, QuestionDTO>();
+            CreateMap<QuestionForCreationDTO, Question>();
+            CreateMap<QuestionForUpdateDTO, Question>();
+            CreateMap<QuestionForUpdateDTO, Question>().ReverseMap();
         }
     }
 }

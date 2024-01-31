@@ -17,6 +17,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
 });
+
 builder.Services.AddControllers();
 
 
@@ -24,7 +25,7 @@ builder.Services.AddControllers();
 //{
 //    config.RespectBrowserAcceptHeader = true;
 //    config.ReturnHttpNotAcceptable = true;
-//    config.InputFormatters.Insert(0, GetJsonPatchInputFormatter());
+//    //config.InputFormatters.Insert(0, GetJsonPatchInputFormatter());
 //}).AddXmlDataContractSerializerFormatters();
 
 var app = builder.Build();

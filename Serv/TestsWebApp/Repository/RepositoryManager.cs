@@ -17,7 +17,7 @@ namespace Repository
         {
             _repositoryContext = repositoryContext;
             _testRepository = new Lazy<ITestRepository>(() => new TestRepository(repositoryContext));
-           // _questionRepository = new Lazy<IQuestionRepository>(() => new QuestionRepository(repositoryContext));
+            _questionRepository = new Lazy<IQuestionRepository>(() => new QuestionRepository(repositoryContext));
         }
 
         public ITestRepository Test => _testRepository.Value;

@@ -14,15 +14,21 @@ namespace Service
     public class ServiceManager : IServiceManager
     {
         private readonly Lazy<ITestService> _testService;
+        private readonly Lazy<IQuestionService> _questionService;
 
         public ServiceManager(IRepositoryManager repositoryManager,
                               IMapper mapper,
-                              IDataShaper<TestDTO> dataShaperTest)
+                              IDataShaper<TestDTO> dataShaperTest,
+                              IDataShaper<QuestionDTO> dataShaperQuestion)
         {
             _testService = new Lazy<ITestService>(() =>
             new TestService(repositoryManager, mapper, dataShaperTest));
+
+            _questionService = new Lazy<IQuestionService>(() =>
+            new QuestionService(repositoryManager, mapper, dataShaperQuestion));
         }
 
         public ITestService TestService => _testService.Value;
+        public IQuestionService QuestionService => _questionService.Value;
     }
 }

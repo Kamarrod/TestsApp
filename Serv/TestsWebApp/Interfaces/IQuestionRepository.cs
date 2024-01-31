@@ -11,8 +11,8 @@ namespace Interfaces
     public interface IQuestionRepository
     {
         Task<PagedList<Question>> GetAllQuestionsAsync(QuestionParameters questionParameters, bool trackChanges);
-        Task<Question> GetQuestiontAsync(Guid QuestionId, bool trackChanges);
-        void CreateQuestion(Guid questionId, Question question);
+        Task<Question> GetQuestionAsync(Guid QuestionId, bool trackChanges);
+        void CreateQuestion(Guid testId, Question question);
         void DeleteQuestion(Question question);
     }
 }

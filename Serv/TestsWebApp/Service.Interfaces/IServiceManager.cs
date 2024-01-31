@@ -9,5 +9,6 @@ namespace Service.Interfaces
     public interface IServiceManager
     {
         ITestService TestService { get; }
+        IQuestionService QuestionService { get; }
     }
 }

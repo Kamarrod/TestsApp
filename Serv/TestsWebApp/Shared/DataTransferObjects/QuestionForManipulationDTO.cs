@@ -14,6 +14,5 @@ namespace Shared.DataTransferObjects
         public string Answer { get; init; }
         public int NumberQuestion { get; init; }
         public int Cost { get; init; }
-        public Guid TestId { get; init; }
     }
 }

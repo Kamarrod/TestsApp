@@ -35,6 +35,7 @@ namespace TestsWebApp.Extentsions
         public static void ConfigureDaraShaper(this IServiceCollection services)
         {
             services.AddScoped<IDataShaper<TestDTO>, DataShaper<TestDTO>>();
+            services.AddScoped<IDataShaper<QuestionDTO>, DataShaper<QuestionDTO>>();
         }
     }
 
