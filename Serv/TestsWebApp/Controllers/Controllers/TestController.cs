@@ -39,7 +39,7 @@ namespace Controllers.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> CreateTest([FromBody] TestForCreationDTO testForCreation)
         {
             if (testForCreation is null)
@@ -49,7 +49,7 @@ namespace Controllers.Controllers
         }
 
         [HttpDelete("{id:guid}")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> DeleteTest(Guid id)
         {
             await _service.TestService.DeleteTestAsync(id, trackChanges: false);
@@ -57,7 +57,7 @@ namespace Controllers.Controllers
         }
 
         [HttpPut("{id:guid}")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> UpdateTest(Guid id, [FromBody] TestForUpdateDTO testForUpdate)
         {
             if (testForUpdate is null)

@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
 using Shared.DataTransferObjects;
@@ -44,6 +45,7 @@ namespace Controllers.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateQuestion(Guid testId, [FromBody] QuestionForCreationDTO questionForCreation)
         {
             if (questionForCreation is null)
@@ -59,6 +61,7 @@ namespace Controllers.Controllers
         }
 
         [HttpDelete("{id:guid}")]
+        [Authorize]
         public async Task<IActionResult> DeleteQuestion(Guid testId, Guid id)
         {
             await _service.QuestionService.DeleteQuestionAsync(testId, id, trackChanges:false);
@@ -66,6 +69,7 @@ namespace Controllers.Controllers
         }
 
         [HttpPut("{id:guid}")]
+        [Authorize]
         public async Task<IActionResult> UpdateQuestion(Guid testId, Guid id, [FromBody] QuestionForUpdateDTO questionForUpdate)
         {
             if (questionForUpdate is null)
