@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Entities.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
 using Shared.DataTransferObjects;
@@ -16,10 +18,13 @@ namespace Controllers.Controllers
     public class TestController : ControllerBase
     {
         private readonly IServiceManager _service;
+        private readonly UserManager<User> _userManager;
 
-        public TestController(IServiceManager service)
+        public TestController(IServiceManager service,
+                              UserManager<User> userManager)
         {
             _service = service;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -44,7 +49,7 @@ namespace Controllers.Controllers
         {
             if (testForCreation is null)
                 return BadRequest("TestForCreationDTO object is null");
-            var createTest = await _service.TestService.CreateTestAsync(testForCreation, trackChanges: false);
+            var createTest = await _service.TestService.CreateTestAsync(testForCreation, trackChanges: false, GetCurrentUserAsync().Result.Id);
             return CreatedAtRoute("TestById", new { id = createTest.Id}, createTest);
         }
 
@@ -52,7 +57,9 @@ namespace Controllers.Controllers
         [Authorize]
         public async Task<IActionResult> DeleteTest(Guid id)
         {
-            await _service.TestService.DeleteTestAsync(id, trackChanges: false);
+            //var a = GetCurrentUserAsync().Id;
+            string currentUserId = GetCurrentUserAsync().Id.ToString();
+            await _service.TestService.DeleteTestAsync(id, trackChanges: false, currentUserId);
             return NoContent();
         }
 
@@ -64,9 +71,12 @@ namespace Controllers.Controllers
                 return BadRequest("TestForUpdateDTO object is null");
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
+            string currentUserId = GetCurrentUserAsync().Result.Id;
 
-            await _service.TestService.UpdateTestAsync(id, testForUpdate, trackChanges : true);
+            await _service.TestService.UpdateTestAsync(id, testForUpdate, trackChanges : true, currentUserId);
             return NoContent();
         }
+
+        private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
     }
 }

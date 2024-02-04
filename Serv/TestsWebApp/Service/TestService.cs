@@ -2,10 +2,13 @@
 using Entities.Exceptions;
 using Entities.Models;
 using Interfaces;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Service.Interfaces;
 using Shared.DataTransferObjects;
 using Shared.RequestFeatures;
 using System.Dynamic;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Service
 {
@@ -14,14 +17,17 @@ namespace Service
         private readonly IRepositoryManager _repository;
         private readonly IMapper _mapper;
         private readonly IDataShaper<TestDTO> _dataShaper;
+        private readonly UserManager<User> _userManager;
 
         public TestService(IRepositoryManager repositoryManager,
                            IMapper mapper,
-                           IDataShaper<TestDTO> dataShaper)
+                           IDataShaper<TestDTO> dataShaper,
+                           UserManager<User> userManager)
         {
             _repository = repositoryManager;
             _mapper = mapper;
             _dataShaper = dataShaper;
+            _userManager = userManager;
         }
 
         public async Task<(IEnumerable<ExpandoObject> tests, MetaData metaData)> GetAllTestsAsync
@@ -46,9 +52,12 @@ namespace Service
             return testDTO;
         }
 
-        public async Task<TestDTO> CreateTestAsync(TestForCreationDTO testForCreation, bool trackChanges)
+        public async Task<TestDTO> CreateTestAsync(TestForCreationDTO testForCreation, bool trackChanges, string currentUserId)
         {
-            var testEntity = _mapper.Map<Test>(testForCreation);
+
+            if (testForCreation.AuthorId != currentUserId)
+                throw new Exception();
+             var testEntity = _mapper.Map<Test>(testForCreation);
             _repository.Test.CreateTest(testEntity);
             await _repository.SaveAsync();
 
@@ -56,24 +65,29 @@ namespace Service
             return testDTO;
         }
 
-        public async Task DeleteTestAsync(Guid testId, bool trackChanges)
+        public async Task DeleteTestAsync(Guid testId, bool trackChanges, string currentUserId)
         {
             var test =  await _repository.Test.GetTestAsync(testId, trackChanges: false);
             if (test is null)
                 throw new TestNotFoundException(testId);
-
+            if (currentUserId != test.AuthorId)
+                throw new UserNotAuthorException(currentUserId);
             _repository.Test.DeleteTest(test);
             await _repository.SaveAsync();
         }
 
-        public async Task UpdateTestAsync(Guid testId, TestForUpdateDTO testForUpdate, bool trackChanges)
+        public async Task UpdateTestAsync(Guid testId, TestForUpdateDTO testForUpdate, bool trackChanges, string currentUserId)
         {
             var test = await _repository.Test.GetTestAsync(testId, trackChanges : false);
             if (test is null)
                 throw new TestNotFoundException(testId);
-
+            if (currentUserId != test.AuthorId)
+                throw new UserNotAuthorException(currentUserId);
             _mapper.Map(testForUpdate, test);
             await _repository.SaveAsync();
         }
+
+        
+
     }
 }

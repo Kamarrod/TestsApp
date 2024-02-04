@@ -27,7 +27,7 @@ namespace Service
                               IConfiguration configuration)
         {
             _testService = new Lazy<ITestService>(() =>
-            new TestService(repositoryManager, mapper, dataShaperTest));
+            new TestService(repositoryManager, mapper, dataShaperTest, userManager));
 
             _questionService = new Lazy<IQuestionService>(() =>
             new QuestionService(repositoryManager, mapper, dataShaperQuestion));

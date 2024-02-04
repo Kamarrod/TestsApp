@@ -13,6 +13,7 @@ namespace Shared.DataTransferObjects
         public string Name { get; init; }
         public DateTime CreateTime { get; init; }
         public DateTime CloseTime { get; init; }
+        public string AuthorId { get; init; }
         public bool HaveTimeLimit { get; init; }
         public int? TimeLimit { get; init; }
     }

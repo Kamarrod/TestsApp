@@ -10,7 +10,6 @@ namespace Service.Interfaces
     {
         ITestService TestService { get; }
         IQuestionService QuestionService { get; }
-
         IAuthenticationService AuthenticationService { get; }
     }
 }

@@ -25,5 +25,8 @@ namespace Entities.Models
         [Range(0, 2880, ErrorMessage = "Лимит по времени должен быть не более 2880 минут(48 часов) и не менее 0")]
         public int? TimeLimit { get; set; }
 
+        //[ForeignKey(nameof(User))]
+        public string AuthorId { get; set; }
+
     }
 }
