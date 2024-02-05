@@ -67,7 +67,7 @@ namespace Service
 
         public async Task DeleteTestAsync(Guid testId, bool trackChanges, string currentUserId)
         {
-            var test =  await _repository.Test.GetTestAsync(testId, trackChanges: false);
+             var test =  await _repository.Test.GetTestAsync(testId, trackChanges: false);
             if (test is null)
                 throw new TestNotFoundException(testId);
             if (currentUserId != test.AuthorId)
@@ -86,8 +86,5 @@ namespace Service
             _mapper.Map(testForUpdate, test);
             await _repository.SaveAsync();
         }
-
-        
-
     }
 }
