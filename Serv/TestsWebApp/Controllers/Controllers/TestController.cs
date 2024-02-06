@@ -16,7 +16,7 @@ namespace Controllers.Controllers
         private readonly IServiceManager _service;
 
         public TestController(IServiceManager service)
-        {
+        { 
             _service = service;
         }
 

@@ -19,9 +19,11 @@ namespace Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            //modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
         public DbSet<Test>? Tests { get; set; }
         public DbSet<Question>? Questions { get; set; }
+        public DbSet<Answer>? Answers { get; set; }
+        public DbSet<Student>? Students { get; set; }
     }
 }
