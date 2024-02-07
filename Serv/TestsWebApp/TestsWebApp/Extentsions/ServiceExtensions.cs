@@ -8,7 +8,8 @@ using Repository;
 using Service;
 using Service.DataShaping;
 using Service.Interfaces;
-using Shared.DataTransferObjects;
+using Shared.DataTransferObjects.QuestionDTOs;
+using Shared.DataTransferObjects.TestDTOs;
 using System.Text;
 
 namespace TestsWebApp.Extentsions

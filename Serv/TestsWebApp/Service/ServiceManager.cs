@@ -4,7 +4,8 @@ using Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Service.Interfaces;
-using Shared.DataTransferObjects;
+using Shared.DataTransferObjects.QuestionDTOs;
+using Shared.DataTransferObjects.TestDTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace Service
         private readonly Lazy<ITestService> _testService;
         private readonly Lazy<IQuestionService> _questionService;
         private readonly Lazy<IAuthenticationService> _authenticationService;
+        private readonly Lazy<IAnswerService> _answerService;
 
         public ServiceManager(IRepositoryManager repositoryManager,
                               IMapper mapper,
@@ -34,10 +36,14 @@ namespace Service
 
             _authenticationService = new Lazy<IAuthenticationService>(() =>
             new AuthenticationService(mapper, userManager, configuration));
+
+            _answerService = new Lazy<IAnswerService>(() =>
+            new AnswerService(repositoryManager, mapper));
         }
 
         public ITestService TestService => _testService.Value;
         public IQuestionService QuestionService => _questionService.Value;
         public IAuthenticationService AuthenticationService => _authenticationService.Value;
+        public IAnswerService AnswerService => _answerService.Value;
     }
 }

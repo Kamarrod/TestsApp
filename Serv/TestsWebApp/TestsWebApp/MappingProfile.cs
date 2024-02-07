@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using Entities.Models;
-using Shared.DataTransferObjects;
+using Shared.DataTransferObjects.AnswerDTOs;
+using Shared.DataTransferObjects.AuthDTOs;
+using Shared.DataTransferObjects.QuestionDTOs;
+using Shared.DataTransferObjects.TestDTOs;
 
 namespace TestsWebApp
 {
@@ -17,6 +20,8 @@ namespace TestsWebApp
             CreateMap<QuestionForUpdateDTO, Question>();
             CreateMap<QuestionForUpdateDTO, Question>().ReverseMap();
             CreateMap<UserForRegistrationDTO, User>();
+            CreateMap<Answer, AnswerDTO>();
+            CreateMap<AnswerForCreationDTO, Answer>();
         }
     }
 }

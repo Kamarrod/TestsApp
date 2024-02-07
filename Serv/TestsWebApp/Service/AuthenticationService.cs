@@ -4,7 +4,7 @@ using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Shared.DataTransferObjects;
+using Shared.DataTransferObjects.AuthDTOs;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;

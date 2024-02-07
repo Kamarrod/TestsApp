@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.DataTransferObjects
+namespace Shared.DataTransferObjects.TestDTOs
 {
     public abstract record TestForManipulationDTO
     {

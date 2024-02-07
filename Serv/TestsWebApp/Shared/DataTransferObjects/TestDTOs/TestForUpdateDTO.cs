@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.DataTransferObjects
+namespace Shared.DataTransferObjects.TestDTOs
 {
-    public record QuestionForUpdateDTO : QuestionForManipulationDTO { }
+    public record TestForUpdateDTO : TestForManipulationDTO { }
 }

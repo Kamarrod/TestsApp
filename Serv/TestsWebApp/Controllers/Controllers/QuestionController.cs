@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
-using Shared.DataTransferObjects;
+using Shared.DataTransferObjects.QuestionDTOs;
 using Shared.RequestFeatures;
 using System;
 using System.Collections.Generic;

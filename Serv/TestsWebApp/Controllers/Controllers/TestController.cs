@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
-using Shared.DataTransferObjects;
+using Shared.DataTransferObjects.TestDTOs;
 using Shared.RequestFeatures;
 using System.Security.Claims;
 

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
-    public interface IAnswerRepository1
+    public interface IAnswerRepository
     {
-        Task<List<Answer>> GetAllStudentsByTestId(Guid testId, bool trackChanges);
-        Task<Answer> GetAnswerOnQuestion(Guid testId, Guid questiontId, bool trackChanges);
+        Task<List<Answer>> GetAllStudentsAnswers(Guid testId, Guid studentId, bool trackChanges);
+        Task<Answer> GetAnswerOnQuestion(Guid questiontId, Guid studentId, bool trackChanges);
         void CreateAnswer(Answer answer);
         void DeleteAnswer(Answer answer);
     }

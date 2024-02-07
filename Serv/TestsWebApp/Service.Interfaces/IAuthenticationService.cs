@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Shared.DataTransferObjects;
+using Shared.DataTransferObjects.AuthDTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

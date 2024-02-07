@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
-using Shared.DataTransferObjects;
+using Shared.DataTransferObjects.AuthDTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
