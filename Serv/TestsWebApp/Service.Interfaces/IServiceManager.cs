@@ -12,5 +12,6 @@ namespace Service.Interfaces
         IQuestionService QuestionService { get; }
         IAuthenticationService AuthenticationService { get; }
         IAnswerService AnswerService { get; }
+        IStudentService StudentService { get; }
     }
 }

@@ -20,6 +20,7 @@ namespace Service
         private readonly Lazy<IQuestionService> _questionService;
         private readonly Lazy<IAuthenticationService> _authenticationService;
         private readonly Lazy<IAnswerService> _answerService;
+        private readonly Lazy<IStudentService> _studentService;
 
         public ServiceManager(IRepositoryManager repositoryManager,
                               IMapper mapper,
@@ -39,11 +40,16 @@ namespace Service
 
             _answerService = new Lazy<IAnswerService>(() =>
             new AnswerService(repositoryManager, mapper));
+
+            _studentService = new Lazy<IStudentService>(() =>
+            new StudentService(repositoryManager, mapper));
         }
 
         public ITestService TestService => _testService.Value;
         public IQuestionService QuestionService => _questionService.Value;
         public IAuthenticationService AuthenticationService => _authenticationService.Value;
         public IAnswerService AnswerService => _answerService.Value;
+
+        public IStudentService StudentService => _studentService.Value;
     }
 }
