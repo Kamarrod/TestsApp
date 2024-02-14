@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Controllers.Controllers
 {
-    [Route("api/tests/{testId}/student/{studentId}/answers")]
+    [Route("api/tests/{testId}/students/{studentId}/answers")]
     [ApiController]
     public class AnswerController : ControllerBase
     {
@@ -39,8 +39,8 @@ namespace Controllers.Controllers
             return Ok(answer);
         }
 
-        [HttpPost("{questionId:guid}")]
-        public async Task<IActionResult> CreateAnswer(Guid questionId, Guid studentId, [FromBody] AnswerForCreationDTO answerForCreation)
+        [HttpPost]
+        public async Task<IActionResult> CreateAnswer(Guid studentId, [FromBody] AnswerForCreationDTO answerForCreation)
         {
             if (answerForCreation is null)
                 return BadRequest("AnswerForCreationDTO object is null");
@@ -48,9 +48,9 @@ namespace Controllers.Controllers
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
 
-            var answer = await _service
+            await _service
                 .AnswerService
-                .CreateAnswer(studentId, questionId, answerForCreation, trackChanges:false);
+                .CreateAnswer(studentId, answerForCreation.QuestionId, answerForCreation, trackChanges:false);
 
             return NoContent();
         }

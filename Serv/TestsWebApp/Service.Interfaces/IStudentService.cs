@@ -9,7 +9,7 @@ namespace Service.Interfaces
 {
     public interface IStudentService
     {
-        Task<IEnumerable<StudentDTO>> GetAllStudents(Guid testId, bool trackChanges);
+        Task<List<StudentDTO>> GetAllStudents(Guid testId, bool trackChanges);
         Task<StudentDTO> GetStudent(Guid testId, Guid studentId, bool trackChnges);
         Task<StudentDTO> CreateStudent(Guid testId, StudentForCreationDTO studentForCreation, bool trackChanges);
         Task DeleteStudent(Guid testId, Guid studentId);

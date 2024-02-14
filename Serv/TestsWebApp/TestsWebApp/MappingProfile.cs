@@ -3,6 +3,7 @@ using Entities.Models;
 using Shared.DataTransferObjects.AnswerDTOs;
 using Shared.DataTransferObjects.AuthDTOs;
 using Shared.DataTransferObjects.QuestionDTOs;
+using Shared.DataTransferObjects.StudentDTOs;
 using Shared.DataTransferObjects.TestDTOs;
 
 namespace TestsWebApp
@@ -22,6 +23,8 @@ namespace TestsWebApp
             CreateMap<UserForRegistrationDTO, User>();
             CreateMap<Answer, AnswerDTO>();
             CreateMap<AnswerForCreationDTO, Answer>();
+            CreateMap<Student, StudentDTO>();
+            CreateMap<StudentForCreationDTO, Student>();
         }
     }
 }

@@ -54,10 +54,8 @@ namespace Service
 
         public async Task<TestDTO> CreateTestAsync(TestForCreationDTO testForCreation, bool trackChanges, string currentUserId)
         {
-
-            if (testForCreation.AuthorId != currentUserId)
-                throw new Exception();
              var testEntity = _mapper.Map<Test>(testForCreation);
+            testEntity.AuthorId = currentUserId;
             _repository.Test.CreateTest(testEntity);
             await _repository.SaveAsync();
 

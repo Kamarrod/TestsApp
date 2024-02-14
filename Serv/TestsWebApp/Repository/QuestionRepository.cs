@@ -23,10 +23,11 @@ namespace Repository
             Create(question);
         }
         public void DeleteQuestion(Question question) => Delete(question);
-        public async Task<PagedList<Question>> GetAllQuestionsAsync(QuestionParameters questionParameters, bool trackChanges)
+        public async Task<PagedList<Question>> GetAllByTestQuestionsAsync(Guid testId,QuestionParameters questionParameters, bool trackChanges)
         {
             var questions = await
                 FindAll(trackChanges)
+                .Where(x => x.TestId == testId)
                 .Search(questionParameters.SearchTerm)
                 .Sort(questionParameters.OrderBy)
                 .ToListAsync();

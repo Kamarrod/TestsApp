@@ -17,7 +17,7 @@ namespace Entities.Models
         [ForeignKey(nameof(Question))]
         public Guid QuestionId { get; set; }
         [ForeignKey(nameof(Student))]
-        public Guid StudetnId { get; set;  }
+        public Guid StudentId { get; set;  }
 
     }
 }

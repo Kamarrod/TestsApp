@@ -17,11 +17,11 @@ namespace Repository
 
         public async Task<List<Answer>> GetAllStudentsAnswers(Guid testId, Guid studentId, bool trackChanges) => await
             FindAll(trackChanges)
-            .Where(x => x.StudetnId.Equals(studentId))
+            .Where(x => x.StudentId.Equals(studentId))
             .ToListAsync();
 
         public async Task<Answer> GetAnswerOnQuestion(Guid questiontId, Guid studentId, bool trackChanges) => await
-            FindByCondition(x => x.StudetnId.Equals(studentId) && x.QuestionId.Equals(questiontId), trackChanges)
+            FindByCondition(x => x.StudentId.Equals(studentId) && x.QuestionId.Equals(questiontId), trackChanges)
             .SingleOrDefaultAsync();
 
         public void CreateAnswer(Answer answer) => Create(answer);

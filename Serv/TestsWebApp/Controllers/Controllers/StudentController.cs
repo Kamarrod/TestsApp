@@ -33,7 +33,7 @@ namespace Controllers.Controllers
             if (test.AuthorId != GetCurrentUserAsync())
                 return BadRequest();
 
-            var students = _service
+            var students = await _service
                 .StudentService
                 .GetAllStudents(testId, trackChanges: false);
             return Ok(students);
@@ -57,7 +57,7 @@ namespace Controllers.Controllers
             var student = await _service
                 .StudentService
                 .CreateStudent(testId, studentForCreation, trackChanges:false);
-            return CreatedAtRoute("StrudentById",new {id = student.Id}, student);
+            return CreatedAtRoute("StudentById",new {id = student.Id}, student);
         }
 
         [HttpDelete("{id:guid}")]

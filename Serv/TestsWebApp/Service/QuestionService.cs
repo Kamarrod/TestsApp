@@ -37,7 +37,7 @@ namespace Service
 
             var questionWithMetaData = await _repository
                 .Question
-                .GetAllQuestionsAsync(questionParameters, trackChanges);
+                .GetAllByTestQuestionsAsync(testId, questionParameters, trackChanges);
 
             var questionDTO = _mapper.Map<IEnumerable<QuestionDTO>>(questionWithMetaData);
             var shapeData = _dataShaper.ShapeData(questionDTO, questionParameters.Fields);

@@ -62,7 +62,7 @@ namespace Service
             await _repository.SaveAsync();
         }
 
-        public async Task<IEnumerable<StudentDTO>> GetAllStudents(Guid testId, bool trackChanges)
+        public async Task<List<StudentDTO>> GetAllStudents(Guid testId, bool trackChanges)
         {
             var test = await _repository
                  .Test
@@ -74,7 +74,7 @@ namespace Service
                 .Student
                 .GetAllStudentsByTestId(testId, trackChanges);
 
-            var studentsDTO = _mapper.Map<IEnumerable<StudentDTO>>(students);
+            var studentsDTO = _mapper.Map<List<StudentDTO>>(students);
             return studentsDTO;
         }
 

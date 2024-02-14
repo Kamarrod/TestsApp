@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shared.DataTransferObjects.TestDTOs
 {
-    public record TestForCreationDTO : TestForManipulationDTO
+    public record TestForCreationDTO
     {
         public string Name { get; init; }
         public DateTime CreateTime { get; init; }
