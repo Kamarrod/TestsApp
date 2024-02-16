@@ -40,7 +40,7 @@ namespace Controllers.Controllers
         }
 
         [HttpGet("{id:guid}", Name = "StudentById")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetStudent(Guid id, Guid testId)
         {
             var student = await _service
