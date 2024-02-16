@@ -11,8 +11,8 @@ namespace Shared.DataTransferObjects.AnswerDTOs
     {
         [MaxLength(50)]
         [Required(ErrorMessage = "Answer is a required field.")]
-        public string UserAnswer { get; set; }    
-        public Guid QuestionId { get; set; }
-        public Guid StudentId { get; set; }
+        public string UserAnswer { get; init; }    
+        public Guid QuestionId { get; init; }
+        public Guid StudentId { get; init; }
     }
 }

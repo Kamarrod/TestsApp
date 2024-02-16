@@ -18,6 +18,7 @@ namespace Entities.Models
         public Guid QuestionId { get; set; }
         [ForeignKey(nameof(Student))]
         public Guid StudentId { get; set;  }
+        public bool isCorrectAnswer { get; set; }
 
     }
 }

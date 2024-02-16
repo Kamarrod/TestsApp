@@ -2,6 +2,7 @@
 using Entities.Exceptions;
 using Entities.Models;
 using Interfaces;
+using Service.Helpers;
 using Service.Interfaces;
 using Shared.DataTransferObjects.AnswerDTOs;
 using System;
@@ -35,6 +36,10 @@ namespace Service
                 throw new StudentNotFoundException(studentId);
 
             var answerEntity = _mapper.Map<Answer>(answerForCreation);
+
+            answerEntity.isCorrectAnswer = await 
+                CheckAnswers.CheckAnswerWithGPT(answerForCreation.UserAnswer, question.Answer, question.QuestionText);
+
             _repository.Answer.CreateAnswer(answerEntity);
             await _repository.SaveAsync();
 
