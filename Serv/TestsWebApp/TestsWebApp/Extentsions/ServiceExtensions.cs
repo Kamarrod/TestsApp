@@ -16,14 +16,30 @@ namespace TestsWebApp.Extentsions
 {
     public static class ServiceExtensions
     {
-        public static void ConfigureCors(this IServiceCollection services) =>
-            services.AddCors(optinins =>
+        // public static void ConfigureCors(this IServiceCollection services) =>
+        //     services.AddCors(optinins =>
+        //     {
+        //         optinins.AddPolicy("CorsPolicy", builder =>
+        //         builder.WithOrigins("http://localhost:3000",
+        //                 "localhost:3000",
+        //                 "http://192.168.56.1:3000")
+        //         .AllowAnyMethod()
+        //         .AllowAnyHeader()
+        //         .AllowCredentials()
+        //         .WithExposedHeaders("X-Pagination"));
+        //     });
+        
+        public static void ConfigureCors(this IServiceCollection services)
+            => services.AddCors(opts =>
             {
-                optinins.AddPolicy("CorsPolicy", builder =>
-                builder.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .WithExposedHeaders("X-Pagination"));
+                opts.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials()
+                        .WithExposedHeaders("X-Pagination");
+                });
             });
         public static void ConfigureIISIntegration(this IServiceCollection services) =>
           services.Configure<IISOptions>(options =>

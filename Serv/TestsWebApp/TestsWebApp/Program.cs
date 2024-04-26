@@ -24,14 +24,6 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 
 builder.Services.AddControllers();
 
-
-//builder.Services.AddControllers(config =>
-//{
-//    config.RespectBrowserAcceptHeader = true;
-//    config.ReturnHttpNotAcceptable = true;
-//    //config.InputFormatters.Insert(0, GetJsonPatchInputFormatter());
-//}).AddXmlDataContractSerializerFormatters();
-
 var app = builder.Build();
 if (app.Environment.IsProduction())
     app.UseHsts();
@@ -45,13 +37,14 @@ NewtonsoftJsonPatchInputFormatter GetJsonPatchInputFormatter() =>
     .OfType<NewtonsoftJsonPatchInputFormatter>()
     .First();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.All
 });
-app.UseCors("CorsPolicy");
+//app.UseCors("CorsPolicy");
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
