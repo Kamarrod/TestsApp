@@ -42,7 +42,12 @@ const Login = () => {
       console.log(JSON.stringify(response?.data));
       //console.log(JSON.stringify(response));
       const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
+      //console.log(JSON.parse(window.atob(accessToken.split(".")[1])));
+      const tokenData = JSON.parse(window.atob(accessToken.split(".")[1]));
+      const roles =
+        tokenData[
+          ["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
+        ];
       setAuth({ userName, password, roles, accessToken });
       setUser("");
       setPwd("");
@@ -97,7 +102,7 @@ const Login = () => {
         Need an Account?
         <br />
         <span className="line">
-          <a href="/register">Sign Up</a>
+          <Link to="/register">Sign Up</Link>
         </span>
       </p>
     </section>
