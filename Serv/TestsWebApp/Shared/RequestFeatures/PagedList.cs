@@ -27,7 +27,8 @@ namespace Shared.RequestFeatures
             var count = source.Count();
             var items = source
                 .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize).ToList();
+                .Take(pageSize)
+                .ToList();
             return new PagedList<T>(items, count, pageNumber, pageSize);
         }
 

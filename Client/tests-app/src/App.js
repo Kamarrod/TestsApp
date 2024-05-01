@@ -8,6 +8,8 @@ import LinkPage from "./components/LinkPage";
 import RequireAuth from "./components/RequireAuth";
 import Missing from "./components/Missing";
 import PersistLogin from "./components/PersistLogin";
+import GetTests from "./components/Tests/GetTests";
+import TestCreation from "./components/Tests/CreateTest";
 
 const ROLES = {
   User: "User",
@@ -25,8 +27,10 @@ function App() {
           <Route
             element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.User]} />}
           >
+            <Route path="tests" element={<GetTests />} />
             <Route path="linkpage" element={<LinkPage />} />
             <Route path="unauthorized" element={<Unauthorized />} />
+            <Route path="createTest" element={<TestCreation />} />
           </Route>
         </Route>
         <Route path="*" element={<Missing />} />

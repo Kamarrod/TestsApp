@@ -43,17 +43,25 @@ const Login = () => {
       //console.log(JSON.stringify(response));
       const accessToken = response?.data?.accessToken;
       const tokenData = JSON.parse(window.atob(accessToken.split(".")[1]));
+      console.log(tokenData);
       const roles =
         tokenData[
           ["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
         ];
-      setAuth({ userName, password, roles, accessToken });
+      const id =
+        tokenData[
+          [
+            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier",
+          ]
+        ];
+      setAuth({ userName, password, roles, accessToken, id });
       localStorage.setItem(
         "auth",
-        JSON.stringify({ userName, password, roles, accessToken })
+        JSON.stringify({ userName, password, roles, accessToken, id })
       );
       setUser("");
       setPwd("");
+      console.log("from" + from);
       navigate(from, { replace: true });
     } catch (err) {
       if (!err?.response) {

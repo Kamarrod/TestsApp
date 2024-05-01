@@ -39,7 +39,7 @@ namespace Service
 
             var testDTO = _mapper.Map<IEnumerable<TestDTO>>(testWithMetaData);
             var shapeData = _dataShaper.ShapeData(testDTO, testParameters.Fields);
-            return (tests : shapeData, metaData: testWithMetaData.MetaData);
+            return (tests : shapeData,  metaData: testWithMetaData.MetaData);
         }
 
         public async Task<TestDTO> GetTestAsync(Guid testId, bool trackChanges)
@@ -54,7 +54,7 @@ namespace Service
 
         public async Task<TestDTO> CreateTestAsync(TestForCreationDTO testForCreation, bool trackChanges, string currentUserId)
         {
-             var testEntity = _mapper.Map<Test>(testForCreation);
+            var testEntity = _mapper.Map<Test>(testForCreation);
             testEntity.AuthorId = currentUserId;
             _repository.Test.CreateTest(testEntity);
             await _repository.SaveAsync();

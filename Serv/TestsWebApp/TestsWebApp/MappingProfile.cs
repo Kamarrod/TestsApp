@@ -14,6 +14,10 @@ namespace TestsWebApp
         {
             CreateMap<Test, TestDTO>();
             CreateMap<TestForCreationDTO, Test>();
+                //.ForMember(dest => dest.CreateTime,
+                  //  opt => opt.MapFrom(src => src.CreateTime.ToFileTimeUtc()))
+                //.ForMember(dest => dest.CloseTime,
+                  //  opt => opt.MapFrom(src => src.CloseTime.ToFileTimeUtc()) );
             CreateMap<TestForUpdateDTO, Test>();
             CreateMap<TestForUpdateDTO, Test>().ReverseMap();
             CreateMap<Question, QuestionDTO>();

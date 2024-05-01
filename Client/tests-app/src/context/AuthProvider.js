@@ -5,7 +5,7 @@ const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
   //onst [auth, setAuth] = useState({});
   const [auth, setAuth] = useState(
-    JSON.parse(localStorage.getItem("auth")) || false
+    JSON.parse(localStorage.getItem("auth")) || useState({})
   );
   const [persist, setPersist] = useState(
     JSON.parse(localStorage.getItem("persist")) || false

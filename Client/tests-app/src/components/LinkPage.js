@@ -12,6 +12,7 @@ const LinkPage = () => {
       <br />
       <h2>Private</h2>
       <Link to="/">Home</Link>
+      <Link to="/tests">Tests</Link>
     </section>
   );
 };

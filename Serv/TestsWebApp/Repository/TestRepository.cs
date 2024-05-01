@@ -27,7 +27,7 @@ namespace Repository
                 .Sort(testParameters.OrderBy)
                 .ToListAsync();
 
-            return PagedList<Test>.ToPagedList(tests, testParameters.PageNumber, testParameters.PageNumber);
+            return PagedList<Test>.ToPagedList(tests, testParameters.PageNumber, testParameters.PageSize);
         }
 
         public async Task<Test> GetTestAsync(Guid testId, bool trackChanges) => await

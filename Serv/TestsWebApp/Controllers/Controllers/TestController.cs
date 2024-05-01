@@ -37,7 +37,7 @@ namespace Controllers.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> CreateTest([FromBody] TestForCreationDTO testForCreation)
         {
             if (testForCreation is null)
