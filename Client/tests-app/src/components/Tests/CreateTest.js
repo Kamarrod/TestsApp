@@ -1,7 +1,6 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 //import axios from "../../api/axios";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
 const CREATETEST_URL = "/api/tests";
@@ -28,8 +27,11 @@ const TestCreation = () => {
     e.preventDefault();
 
     //const closeTimeUtc = closeTime
-    const createTimeUtc = new Date(createTime).toISOString();
-    const closeTimeUtc = new Date(closeTime).toISOString();
+    const createTimeUtc =
+      new Date(createTime).toISOString().split(".")[0] + "Z";
+    const closeTimeUtc = new Date(closeTime).toISOString().split(".")[0] + "Z";
+    console.log(createTimeUtc);
+    console.log(closeTimeUtc);
     //authorId = auth?.id;
 
     try {
@@ -37,8 +39,8 @@ const TestCreation = () => {
         CREATETEST_URL,
         JSON.stringify({
           name,
-          createTimeUtc,
-          closeTimeUtc,
+          createTime: createTimeUtc,
+          closeTime: closeTimeUtc,
           haveTimeLimit,
           timeLimit,
         }),

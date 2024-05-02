@@ -1,10 +1,9 @@
 import axios from "../../api/axios";
 import { useState, useEffect } from "react";
 //import useAuth from "../../hooks/useAuth";
-import "./tests.css";
 import { Link } from "react-router-dom";
 
-const QUESTIONS_URL = "/api/tests";
+const TESTS_URL = "/api/tests";
 
 const GetTests = () => {
   const [tests, setTests] = useState([]);
@@ -13,7 +12,7 @@ const GetTests = () => {
   useEffect(() => {
     const fetchTests = async () => {
       try {
-        const response = await axios.get(QUESTIONS_URL, {
+        const response = await axios.get(TESTS_URL, {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         });
@@ -40,7 +39,10 @@ const GetTests = () => {
     <>
       {errMsg && <p>{errMsg}</p>}
       {tests.map((test, index) => (
-        <p>{test.Name}</p>
+        <div key={index}>
+          <p>{test.Name}</p>
+          <Link to={`/test/${test.Id}`}>Перейти к вопросам</Link>
+        </div>
       ))}
       <Link to="/createTest">Create Test</Link>
     </>

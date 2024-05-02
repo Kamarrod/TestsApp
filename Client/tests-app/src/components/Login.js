@@ -40,7 +40,6 @@ const Login = () => {
         }
       );
       console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response));
       const accessToken = response?.data?.accessToken;
       const tokenData = JSON.parse(window.atob(accessToken.split(".")[1]));
       console.log(tokenData);
