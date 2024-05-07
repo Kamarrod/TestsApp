@@ -30,8 +30,6 @@ const TestCreation = () => {
     const createTimeUtc =
       new Date(createTime).toISOString().split(".")[0] + "Z";
     const closeTimeUtc = new Date(closeTime).toISOString().split(".")[0] + "Z";
-    console.log(createTimeUtc);
-    console.log(closeTimeUtc);
     //authorId = auth?.id;
 
     try {
@@ -42,7 +40,7 @@ const TestCreation = () => {
           createTime: createTimeUtc,
           closeTime: closeTimeUtc,
           haveTimeLimit,
-          timeLimit,
+          timeLimit: timeLimit ? timeLimit : -1,
         }),
         {
           headers: { "Content-Type": "application/json" },

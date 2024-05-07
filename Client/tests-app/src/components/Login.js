@@ -1,4 +1,6 @@
 import { useRef, useState, useEffect } from "react";
+import React from "react";
+
 import useAuth from "../hooks/useAuth";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
@@ -43,16 +45,18 @@ const Login = () => {
       const accessToken = response?.data?.accessToken;
       const tokenData = JSON.parse(window.atob(accessToken.split(".")[1]));
       console.log(tokenData);
-      const roles =
-        tokenData[
-          ["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
-        ];
+      // const roles =
+      //   tokenData[
+      //     ["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
+      //   ];
+      const roles = "User";
       const id =
         tokenData[
           [
             "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier",
           ]
         ];
+
       setAuth({ userName, password, roles, accessToken, id });
       localStorage.setItem(
         "auth",
