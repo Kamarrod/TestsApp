@@ -57,7 +57,8 @@ namespace Controllers.Controllers
             var student = await _service
                 .StudentService
                 .CreateStudent(testId, studentForCreation, trackChanges:false);
-            return CreatedAtRoute("StudentById",new {id = student.Id}, student);
+            //return CreatedAtRoute("StudentById",new {id = student.Id}, student);
+            return Ok(student);
         }
 
         [HttpDelete("{id:guid}")]
