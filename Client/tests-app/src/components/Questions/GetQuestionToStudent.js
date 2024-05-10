@@ -105,6 +105,7 @@ const GetQuestionsToStudent = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [errMsg, setErrMsg] = useState("");
   const [answers, setAnswers] = useState({});
+  const [student, setStudent] = useState({});
   const axios = useAxiosPrivate();
   //const [endTime, setEndTime] = useState();
 
@@ -141,6 +142,7 @@ const GetQuestionsToStudent = (props) => {
       );
 
       localStorage.setItem("student", JSON.stringify(response.data));
+      setStudent(response.data);
       console.log(response.data);
       // Закрыть модальное окно и загрузить вопросы
       setIsModalOpen(false);
@@ -173,22 +175,70 @@ const GetQuestionsToStudent = (props) => {
     setAnswers({ ...answers, [questionId]: answer });
   };
 
+  // const handleSubmitAnswers = async () => {
+  //   try {
+  //     const studentId = student.Id;
+  //     //answers.forEach(async (answer) => {
+  //     for (const answer in answers) {
+  //       await axios.post(
+  //         "/api/tests/" + test.id + "/students/" + studentId + "/answers",
+  //         {
+  //           UserAnswer: answer.value,
+  //           QuestionId: answer.key,
+  //           StudentId: studentId,
+  //         },
+  //         {
+  //           headers: { "Content-Type": "application/json" },
+  //           withCredentials: true,
+  //         }
+  //       );
+  //     }
+  //     //});
+
+  //     // await axios.post(
+  //     //   "/api/s",
+  //     //   { answers },
+  //     //   {
+  //     //     headers: { "Content-Type": "application/json" },
+  //     //     withCredentials: true,
+  //     //   }
+  //     // );
+
+  //     localStorage.removeItem("student");
+  //     // Добавьте здесь логику обработки успешной отправки ответов
+  //   } catch (error) {
+  //     console.error("Ошибка при отправке ответов:", error);
+  //     // Возможно, здесь стоит добавить обработку ошибок
+  //   }
+  // };
+
   const handleSubmitAnswers = async () => {
     try {
-      await axios.post(
-        "/api/s",
-        { answers },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
+      const studentId = student.id;
+      console.log(student);
+
+      for (const questionId in answers) {
+        if (answers.hasOwnProperty(questionId)) {
+          const answer = answers[questionId];
+
+          await axios.post(
+            "/api/tests/" + test.id + "/students/" + studentId + "/answers",
+            {
+              UserAnswer: answer,
+              QuestionId: questionId,
+              StudentId: studentId,
+            },
+            {
+              headers: { "Content-Type": "application/json" },
+              withCredentials: true,
+            }
+          );
         }
-      );
+      }
 
       localStorage.removeItem("student");
-      // Добавьте здесь логику обработки успешной отправки ответов
     } catch (error) {
       console.error("Ошибка при отправке ответов:", error);
-      // Возможно, здесь стоит добавить обработку ошибок
     }
   };
 
@@ -196,7 +246,7 @@ const GetQuestionsToStudent = (props) => {
     if (questions.length > 0) {
       const initialAnswers = {};
       questions.forEach((question) => {
-        initialAnswers[question.id] = "";
+        initialAnswers[question.Id] = "";
       });
       setAnswers(initialAnswers);
     }
@@ -222,7 +272,7 @@ const GetQuestionsToStudent = (props) => {
                 placeholder="Your answer..."
                 value={answers[question.Id] || ""}
                 onChange={(e) =>
-                  handleAnswerChange(question.id, e.target.value)
+                  handleAnswerChange(question.Id, e.target.value)
                 }
               />
             </div>

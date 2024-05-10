@@ -40,8 +40,8 @@ namespace Service
             answerEntity.isCorrectAnswer = await 
                 CheckAnswers.CheckAnswerWithGPT(answerForCreation.UserAnswer, question.Answer, question.QuestionText);
 
-            //_repository.Answer.CreateAnswer(answerEntity);
-            //await _repository.SaveAsync();
+            _repository.Answer.CreateAnswer(answerEntity);
+            await _repository.SaveAsync();
 
             var AnswerDTO = _mapper.Map<AnswerDTO>(answerEntity);
             return AnswerDTO;
