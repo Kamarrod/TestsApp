@@ -64,6 +64,9 @@ const GetTests = () => {
             Перейти к вопросам
           </Link>
           <button onClick={() => DeleteTest(test.Id)}>Удалить</button>
+          <Link to={`/students/${test.Id}`} state={test}>
+            Информация о прошедших
+          </Link>
         </div>
       ))}
       <Link to="/createTest">Create Test</Link>

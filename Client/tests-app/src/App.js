@@ -15,6 +15,7 @@ import TestCreation from "./components/Tests/CreateTest";
 import GetQuestions from "./components/Questions/GetQuestions";
 import GetQuestionsToStudent from "./components/Questions/GetQuestionToStudent";
 import GetQuestionsToAuthor from "./components/Questions/GetQuestionsToAuthor";
+import GetStudent from "./components/Students/GetStudents";
 
 const ROLES = {
   User: "User",
@@ -38,6 +39,7 @@ function App() {
             <Route path="linkpage" element={<LinkPage />} />
             <Route path="test/change" element={<GetQuestionsToAuthor />} />
             <Route path="createTest" element={<TestCreation />} />
+            <Route path="students/:testId" element={<GetStudent />} />
           </Route>
         </Route>
         <Route path="*" element={<Missing />} />

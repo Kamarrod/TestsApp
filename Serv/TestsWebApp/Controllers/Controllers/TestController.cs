@@ -21,11 +21,14 @@ namespace Controllers.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetTests([FromQuery] TestParameters testParameters)
         {
+            var userId = GetCurrentUserAsync();
+            
             var pagedResult = await _service
                 .TestService
-                .GetAllTestsAsync(testParameters, trackChanges: false);
+                .GetAllTestsAsync(testParameters, userId, trackChanges: false);
             return Ok(pagedResult.tests);
         }
 
@@ -43,7 +46,7 @@ namespace Controllers.Controllers
             if (testForCreation is null)
                 return BadRequest("TestForCreationDTO object is null");
             var createTest = await _service.TestService.CreateTestAsync(testForCreation, trackChanges: false, GetCurrentUserAsync());
-            return CreatedAtRoute("TestById", new { id = createTest.Id}, createTest);
+            return CreatedAtRoute("TestById", new { id = createTest.Id}, createTest); 
         }
 
         [HttpDelete("{id:guid}")]

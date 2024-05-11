@@ -15,7 +15,7 @@ const CreateQuestion = (props) => {
 
   //const location = useLocation();
   const { state } = props;
-  //console.log(state);
+  console.log(state);
   const testId = state;
 
   const url = QUESTIONS_URL + testId + "/questions";
@@ -27,7 +27,6 @@ const CreateQuestion = (props) => {
   };
 
   const closeModal = async () => {
-    // Здесь вы можете отправить данные на сервер
     const questionData = {
       questionText: questionText,
       answerText: answerText,
@@ -122,7 +121,7 @@ const CreateQuestion = (props) => {
 
   return (
     <div>
-      <button onClick={openModal}>Открыть модальное окно</button>
+      <button onClick={openModal}>Добавить вопрос</button>
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal}>
         {modalContent}
       </Modal>

@@ -42,7 +42,7 @@ const GetQuestions = () => {
   }, []);
 
   if (!test) {
-    return <div>Loading...</div>;
+    return <div>Нет вопросов</div>;
   }
 
   if (test.authorId === auth.id) {

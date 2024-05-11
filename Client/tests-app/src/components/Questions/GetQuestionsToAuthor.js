@@ -47,7 +47,7 @@ const GetQuestionsToAuthor = (props) => {
   }, []);
 
   if (questions.length === 0) {
-    return <p>Загрузка...</p>;
+    return <p>Нет вопросов</p>;
   }
 
   const handleEditQuestion = async (question) => {
@@ -94,8 +94,8 @@ const GetQuestionsToAuthor = (props) => {
   };
 
   const renderAnswerField = (question) => {
-    console.log("User ID = " + auth.id);
-    console.log(test);
+    //console.log("User ID = " + auth.id);
+    //console.log(test);
     if (auth && auth.id === test.authorId) {
       return (
         <div>
@@ -112,8 +112,8 @@ const GetQuestionsToAuthor = (props) => {
   };
 
   const renderCreateField = () => {
-    if (auth && auth.id === test.AuthorId) {
-      return <CreateQuestion state={test.Id} />;
+    if (auth && auth.id === test.authorId) {
+      return <CreateQuestion state={test.id} />;
     }
     return;
   };

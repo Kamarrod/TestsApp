@@ -31,14 +31,17 @@ namespace Service
         }
 
         public async Task<(IEnumerable<ExpandoObject> tests, MetaData metaData)> GetAllTestsAsync
-            (TestParameters testParameters, bool trackChanges)
+            (TestParameters testParameters, string userId, bool trackChanges)
         {
             var testWithMetaData = await _repository
                 .Test
                 .GetAllTestsAsync(testParameters, trackChanges);
 
             var testDTO = _mapper.Map<IEnumerable<TestDTO>>(testWithMetaData);
-            var shapeData = _dataShaper.ShapeData(testDTO, testParameters.Fields);
+            var shapedTests = testDTO
+                .Where(x => x.AuthorId.Equals(userId))
+                .ToList();
+            var shapeData = _dataShaper.ShapeData(shapedTests, testParameters.Fields);
             return (tests : shapeData,  metaData: testWithMetaData.MetaData);
         }
 
