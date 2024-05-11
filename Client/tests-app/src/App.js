@@ -16,6 +16,7 @@ import GetQuestions from "./components/Questions/GetQuestions";
 import GetQuestionsToStudent from "./components/Questions/GetQuestionToStudent";
 import GetQuestionsToAuthor from "./components/Questions/GetQuestionsToAuthor";
 import GetStudent from "./components/Students/GetStudents";
+import GetStudentInfo from "./components/Students/GetStudentInfo";
 
 const ROLES = {
   User: "User",
@@ -40,6 +41,10 @@ function App() {
             <Route path="test/change" element={<GetQuestionsToAuthor />} />
             <Route path="createTest" element={<TestCreation />} />
             <Route path="students/:testId" element={<GetStudent />} />
+            <Route
+              path="test/:testId/student/:studentId/answers"
+              element={<GetStudentInfo />}
+            />
           </Route>
         </Route>
         <Route path="*" element={<Missing />} />
