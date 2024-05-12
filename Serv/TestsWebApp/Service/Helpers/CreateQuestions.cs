@@ -11,7 +11,7 @@ namespace Service.Helpers
         {
             var api_key = new ApiKeys();
             
-            var prompt = string.Format("Придумай {1} вопросов по описанию:{2}. С ответом. Но результат верни в виде JSON объекта. Где questionText : текст вопроса, а answer: ответ на вопрос",
+            var prompt = string.Format("Сгенерируй {0} вопросов по описанию:{1}. С ответом. Но результат верни в виде JSON объекта. Где questionText : текст вопроса, а answer: ответ на вопрос",
                                         count, description);
 
             List<Message> messages = new List<Message>();

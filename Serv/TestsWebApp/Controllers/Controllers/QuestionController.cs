@@ -76,16 +76,16 @@ namespace Controllers.Controllers
             return NoContent();
         }
 
-        [HttpGet]
+        [HttpPost("generate")]
         [Authorize]
-        public async Task<IActionResult> CreateQuestionsWithGPT([FromQuery] QuestionsForGenerationDTO data)
+        public async Task<IActionResult> CreateQuestionsWithGPT([FromBody] QuestionsForGenerationDTO data)
         {
             if (data is null)
                 return BadRequest("QuestionsForGenerationDTO object is null");
             
-            if (!ModelState.IsValid)
-                return UnprocessableEntity(ModelState);
-            var result = await _service.QuestionService.CreateQuestionsWithGPT(data.Discription, data.Сount);
+            /*if (!ModelState.IsValid)
+                return UnprocessableEntity(ModelState);*/
+            var result = await _service.QuestionService.CreateQuestionsWithGPT(data.Description, data.Count);
 
             return Ok(result);
         }

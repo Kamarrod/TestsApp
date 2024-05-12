@@ -2,6 +2,6 @@ namespace Shared.DataTransferObjects.QuestionDTOs;
 
 public record QuestionsForGenerationDTO
 {
-    public string Discription { get; init; }
-    public int Сount { get; init; }
+    public string Description { get; init; }
+    public int Count { get; init; }
 };
