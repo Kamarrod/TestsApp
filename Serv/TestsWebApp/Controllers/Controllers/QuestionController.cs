@@ -75,5 +75,19 @@ namespace Controllers.Controllers
             await _service.QuestionService.UpdateQuestionAsync(testId, id, questionForUpdate, trackChanges : true);
             return NoContent();
         }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> CreateQuestionsWithGPT([FromQuery] QuestionsForGenerationDTO data)
+        {
+            if (data is null)
+                return BadRequest("QuestionsForGenerationDTO object is null");
+            
+            if (!ModelState.IsValid)
+                return UnprocessableEntity(ModelState);
+            var result = await _service.QuestionService.CreateQuestionsWithGPT(data.Discription, data.Сount);
+
+            return Ok(result);
+        }
     }
 }

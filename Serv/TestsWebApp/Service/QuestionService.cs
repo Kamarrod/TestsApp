@@ -11,6 +11,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Service.Helpers;
 
 namespace Service
 {
@@ -94,6 +95,11 @@ namespace Service
                 throw new QuestionNotFoundException(questionId);
             _mapper.Map(questionForUpdate, question);
             await _repository.SaveAsync();
+        }
+
+        public async Task<string> CreateQuestionsWithGPT(string description, int count)
+        {
+            return await CreateQuestions.CreateQuestionsWithGPT(description, count);
         }
     }
 }

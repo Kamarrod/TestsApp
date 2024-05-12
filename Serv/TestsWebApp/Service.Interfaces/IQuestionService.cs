@@ -17,5 +17,6 @@ namespace Service.Interfaces
         Task<QuestionDTO> CreateQuestionAsync(Guid testId, QuestionForCreationDTO questionForCreation, bool trackChanges);
         Task UpdateQuestionAsync(Guid testId, Guid questionId, QuestionForUpdateDTO questionForUpdate, bool trackChanges);
         Task DeleteQuestionAsync(Guid testId, Guid questionId, bool trackChanges);
+        Task<string> CreateQuestionsWithGPT(string description, int count);
     }
 }
