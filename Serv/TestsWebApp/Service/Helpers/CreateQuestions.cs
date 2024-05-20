@@ -25,6 +25,7 @@ namespace Service.Helpers
                 var requestData = new Request()
                 {
                     ModelId = "gpt-3.5-turbo",
+                    //ModelId = "gpt-4o-2024-05-13",
                     Messages = messages
                 };
                 using var response = await client.PostAsJsonAsync("https://api.openai.com/v1/chat/completions", requestData);
@@ -33,7 +34,7 @@ namespace Service.Helpers
                 var choice = choices[0];
                 var responseMessage = choice.Message;
                 var responseText = responseMessage.Content.Trim();
-                return responseText; //.ToLower() == "да." || responseText.ToLower() == "да";
+                return responseText;
             }
         }
     }

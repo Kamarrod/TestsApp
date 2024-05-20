@@ -17,7 +17,7 @@ import GetQuestionsToStudent from "./components/Questions/GetQuestionToStudent";
 import GetQuestionsToAuthor from "./components/Questions/GetQuestionsToAuthor";
 import GetStudent from "./components/Students/GetStudents";
 import GetStudentInfo from "./components/Students/GetStudentInfo";
-
+import Home from "./components/Home/Home";
 const ROLES = {
   User: "User",
   Admin: "Admin",
@@ -36,6 +36,9 @@ function App() {
           <Route
             element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.User]} />}
           >
+            <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
+              <Route path="/" element={<Home />} />
+            </Route>
             <Route path="tests" element={<GetTests />} />
             <Route path="linkpage" element={<LinkPage />} />
             <Route path="test/change" element={<GetQuestionsToAuthor />} />

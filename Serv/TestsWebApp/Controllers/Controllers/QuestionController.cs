@@ -1,5 +1,4 @@
-﻿using Entities.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
 using Shared.DataTransferObjects.QuestionDTOs;
@@ -72,20 +71,25 @@ namespace Controllers.Controllers
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
 
-            await _service.QuestionService.UpdateQuestionAsync(testId, id, questionForUpdate, trackChanges : true);
+            await _service
+                .QuestionService
+                .UpdateQuestionAsync(testId, id, questionForUpdate, trackChanges : true);
             return NoContent();
         }
 
         [HttpPost("generate")]
         [Authorize]
-        public async Task<IActionResult> CreateQuestionsWithGPT([FromBody] QuestionsForGenerationDTO data)
+        public async Task<IActionResult> CreateQuestionsWithGPT(Guid testId, [FromBody] QuestionsForGenerationDTO data)
         {
             if (data is null)
                 return BadRequest("QuestionsForGenerationDTO object is null");
-            
-            /*if (!ModelState.IsValid)
-                return UnprocessableEntity(ModelState);*/
-            var result = await _service.QuestionService.CreateQuestionsWithGPT(data.Description, data.Count);
+
+            if (!ModelState.IsValid)
+                return UnprocessableEntity(ModelState);
+
+            var result = await _service
+                .QuestionService
+                .CreateQuestionsWithGPT(data.Description, data.Count, testId);
 
             return Ok(result);
         }

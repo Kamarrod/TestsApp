@@ -103,7 +103,6 @@ const GetStudents = () => {
   }, [axios, testId]);
 
   const handleDetails = (studentId) => {
-    // Replace the line below with your logic for navigating to the student details page
     navigate(`/test/${testId}/student/${studentId}/answers`);
   };
 

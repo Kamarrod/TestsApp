@@ -5,19 +5,16 @@ using Interfaces;
 using Service.Interfaces;
 using Shared.DataTransferObjects.QuestionDTOs;
 using Shared.RequestFeatures;
-using System;
-using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Service.Helpers;
+using Newtonsoft.Json;
+using Service.Models;
 
 namespace Service
 {
     public sealed class QuestionService : IQuestionService
     {
-        private readonly IRepositoryManager _repository;
+        private readonly IRepositoryManager _repository; 
         private readonly IMapper _mapper;
         private readonly IDataShaper<QuestionDTO> _dataShaper;
         public QuestionService(IRepositoryManager repository,
@@ -97,9 +94,37 @@ namespace Service
             await _repository.SaveAsync();
         }
 
-        public async Task<string> CreateQuestionsWithGPT(string description, int count)
+        public async Task<List<QuestionDTO>> CreateQuestionsWithGPT(string description, int count, Guid testId)
         {
-            return await CreateQuestions.CreateQuestionsWithGPT(description, count);
+            if (count <= 0)
+            {
+                throw new ArgumentOutOfRangeException("count");
+            }
+
+            string jsonQuestions =  await CreateQuestions.CreateQuestionsWithGPT(description, count);
+            var convertedQuestions = JsonConvert.DeserializeObject<QuestionsContainer>(jsonQuestions);
+
+            var generatedQuestions = convertedQuestions.questions;
+
+            var questions = generatedQuestions
+                .Select(x => new QuestionForCreationDTO()
+                {
+                    QuestionText = x.questionText,
+                    Answer = x.answer,
+                    Cost = 1,
+                    NumberQuestion = 1,
+                })
+                .ToList();
+
+            var result = new List<QuestionDTO>();
+
+            foreach(var question in questions)
+            {
+                var createdQuestion = await CreateQuestionAsync(testId, question, false);
+                result.Add(createdQuestion);
+            }
+
+            return result;
         }
     }
 }

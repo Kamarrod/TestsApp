@@ -5,14 +5,15 @@ const useLogout = () => {
   const { setAuth } = useAuth();
 
   const logout = async () => {
-    //s;
-    // try {
-    //   const response = await axios("/logout", {
-    //     withCredentials: true,
-    //   });
-    // } catch (err) {
-    //   console.error(err);
-    // }
+    setAuth({});
+    try {
+      localStorage.removeItem("auth");
+      // const response = await axios("/logout", {
+      //   withCredentials: true,
+      // });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return logout;

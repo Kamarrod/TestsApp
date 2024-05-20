@@ -107,8 +107,6 @@ const GetQuestionsToStudent = (props) => {
   const [answers, setAnswers] = useState({});
   const [student, setStudent] = useState(null);
   const axios = useAxiosPrivate();
-  //const [endTime, setEndTime] = useState();
-
   const url = `/api/tests/${test.id}/questions`;
 
   const handleCloseModal = () => {
@@ -116,7 +114,6 @@ const GetQuestionsToStudent = (props) => {
   };
 
   const handleSubmitNickname = async (nickname) => {
-    //console.log(test);
     const time = new Date();
     var endTime = new Date();
     if (test.haveTimeLimit) {
@@ -124,8 +121,6 @@ const GetQuestionsToStudent = (props) => {
     } else {
       endTime = time.closeTime;
     }
-    //console.log(time);
-    //console.log(endTime);
     try {
       const response = await axios.post(
         "/api/tests/" + test.id + "/students",
@@ -143,7 +138,6 @@ const GetQuestionsToStudent = (props) => {
 
       localStorage.setItem("student", JSON.stringify(response.data));
       setStudent(response.data);
-      //console.log(response.data);
       setIsModalOpen(false);
       fetchQuestions();
     } catch (error) {

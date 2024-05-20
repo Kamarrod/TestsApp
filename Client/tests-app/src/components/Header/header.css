@@ -1,0 +1,10 @@
+.layout-link-button {
+  background: none;
+  border: none;
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  outline: none;
+}

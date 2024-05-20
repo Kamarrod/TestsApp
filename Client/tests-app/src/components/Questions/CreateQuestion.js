@@ -119,7 +119,6 @@
 
 // export default CreateQuestion;
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
 import Modal from "react-modal";
 import "./question.css";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
@@ -134,10 +133,7 @@ const CreateQuestion = (props) => {
   const [questionCost, setQuestionCost] = useState(0);
   const [description, setDescription] = useState("");
   const [count, setCount] = useState(0);
-
-  //const location = useLocation();
   const { state } = props;
-  //console.log(state);
   const testId = state;
 
   const url = QUESTIONS_URL + testId + "/questions";
@@ -199,8 +195,6 @@ const CreateQuestion = (props) => {
   };
 
   const generateQuestions = async () => {
-    console.log(description);
-    console.log(count);
     try {
       const generatedQuestions = await axios.post(
         url + "/generate",
