@@ -363,6 +363,7 @@ const Register = () => {
             </p>
 
             <button
+              style={{ marginTop: "2%" }}
               disabled={!validName || !validPwd || !validMatch ? true : false}
             >
               Sign Up

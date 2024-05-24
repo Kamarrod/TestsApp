@@ -1,0 +1,116 @@
+.error-message {
+  color: red;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.test-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+}
+
+.test-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  background-color: #ccc; /* Updated background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+}
+
+.test-name {
+  text-align: center;
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.test-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.test-link {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.test-link:hover {
+  background-color: #f0f0f0;
+  border-color: #666;
+}
+
+.test-link:active,
+.test-link:visited {
+  color: #333; /* Ensure color doesn't change */
+}
+
+.delete-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.delete-button:hover {
+  background-color: #ff1a1a;
+}
+
+.create-test-link {
+  display: block;
+  text-align: center;
+  margin: 20px 0;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.create-test-link:active,
+.create-test-link:visited {
+  color: #333; /* Same as the normal state to prevent color change */
+}
+
+.create-test-link:hover {
+  background-color: #f0f0f0;
+  border-color: #666;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .test-container {
+    width: 90%; /* Adjust container width on smaller screens */
+  }
+
+  .test-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .test-link {
+    margin-bottom: 10px;
+  }
+
+  .delete-button {
+    margin-top: 10px;
+    align-self: flex-end;
+  }
+}

@@ -58,10 +58,7 @@ const Login = () => {
         ];
 
       setAuth({ userName, password, roles, accessToken, id });
-      localStorage.setItem(
-        "auth",
-        JSON.stringify({ userName, password, roles, accessToken, id })
-      );
+      localStorage.setItem("auth", JSON.stringify({ accessToken, id }));
       setUser("");
       setPwd("");
       console.log("from" + from);
@@ -118,7 +115,7 @@ const Login = () => {
           value={password}
           required
         />
-        <button>Sign In</button>
+        <button style={{ marginTop: "2%" }}>Sign In</button>
         <div className="persistCheck">
           <input
             type="checkbox"

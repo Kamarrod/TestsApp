@@ -30,3 +30,97 @@
 .create-label {
   color: black;
 }
+
+/* ///// */
+
+.error-message {
+  color: red;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.loading-message {
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+}
+
+.question-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.question-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.question-question {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.answer-section {
+  margin-top: 10px;
+}
+
+.answer-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.answer-p {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.answer-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.button {
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #004999;
+}
+
+.button:active {
+  background-color: #003366;
+}
+/* 
+.edit-button {
+  composes: button;
+} */
+
+.delete-button {
+  background-color: #ff4d4d;
+}
+
+.delete-button:hover {
+  background-color: #ff1a1a;
+}

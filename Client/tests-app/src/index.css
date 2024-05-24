@@ -45,10 +45,10 @@ form {
   padding-bottom: 1rem;
 }
 
-a,
+/* a,
 a:visited {
   color: #fff;
-}
+} */
 
 input[type="text"],
 input[type="password"],
@@ -67,6 +67,7 @@ button {
 
 button {
   padding: 0.5rem;
+  margin-top: 2%;
 }
 
 .instructions {

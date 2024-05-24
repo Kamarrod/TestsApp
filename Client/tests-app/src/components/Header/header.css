@@ -1,10 +1,24 @@
+.navbar-nav {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.navbar-nav .nav-item {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .layout-link-button {
   background: none;
   border: none;
-  color: white;
-  text-decoration: underline;
+  color: #fff;
   cursor: pointer;
   padding: 0;
-  text-decoration: none;
-  outline: none;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.navbar {
+  padding-left: 15px;
+  padding-right: 15px;
 }
