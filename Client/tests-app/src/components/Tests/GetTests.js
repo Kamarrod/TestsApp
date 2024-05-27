@@ -73,6 +73,9 @@ const GetTests = () => {
     // </>
     <>
       {errMsg && <p className="error-message">{errMsg}</p>}
+      <Link to="/createTest" className="create-test-link">
+        Create Test
+      </Link>
       <div className="test-container">
         {tests.map((test, index) => (
           <div key={index} className="test-card">
@@ -104,9 +107,6 @@ const GetTests = () => {
           </div>
         ))}
       </div>
-      <Link to="/createTest" className="create-test-link">
-        Create Test
-      </Link>
     </>
   );
 };

@@ -1,0 +1,47 @@
+.table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.correct-answer {
+  background-color: #d4edda;
+}
+
+.wrong-answer {
+  background-color: #f8d7da;
+}
+
+.progress-bar-container {
+  width: 100%;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  height: 24px;
+  background-color: #4caf50;
+  text-align: center;
+  color: white;
+  line-height: 24px;
+  transition: width 0.3s;
+}

@@ -194,10 +194,6 @@ const GetQuestionsToAuthor = (props) => {
     fetchQuestions();
   }, []);
 
-  if (questions.length === 0) {
-    return <p className="loading-message">Нет вопросов</p>;
-  }
-
   const handleEditQuestion = async (question) => {
     const userInput = prompt(
       "Введите новый текст вопроса и ответ, разделив их символом '|' (например, Вопрос|Ответ)",
@@ -282,7 +278,7 @@ const GetQuestionsToAuthor = (props) => {
   };
 
   const DeleteQuestion = async (id) => {
-    const url = QUESTIONS_URL + test.Id + "/questions";
+    const url = QUESTIONS_URL + test.id + "/questions";
     try {
       await axios.delete(url + "/" + id, {
         headers: { "Content-Type": "application/json" },
@@ -303,6 +299,10 @@ const GetQuestionsToAuthor = (props) => {
   return (
     <>
       {errMsg && <p className="error-message">{errMsg}</p>}
+      {renderCreateField()}
+      {questions.length === 0 && (
+        <p className="loading-message">Нет вопросов</p>
+      )}
       {questions.map((question, index) => (
         <div className="question-card" key={question.Id}>
           <p className="question-label">Вопрос:</p>
@@ -310,7 +310,6 @@ const GetQuestionsToAuthor = (props) => {
           {renderAnswerField(question)}
         </div>
       ))}
-      {renderCreateField()}
     </>
   );
 };
